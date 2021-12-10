@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 public class LongestPalindrome{
 	public static void find(char[] ar){
-		int n = ar.length, x = 0, y = 0, len = 0;
+		int n = ar.length, x = 0, y = 0, len = 0, max = -1;
 		for(int i=0; i<n; i++){
 			if(i==0) continue;
 			int[] co = expand(ar, i, i+1, n);
@@ -11,13 +11,16 @@ public class LongestPalindrome{
 				x = co[0];
 				y = co[1];
 			}
+			// max = Math.max(max, len);
 			co = expand(ar, i-1, i+1, n);
 			if(len<co[1]-co[0]){
 				len = co[1]-co[0];
 				x = co[0];
 				y = co[1];
 			}
+			// max = Math.max(max, len);
 		}
+		System.out.println(y-x-1);
 		System.out.println(new String(ar).substring(x+1, y));
 	}
 	public static int[] expand(char[] ar, int i, int j, int n){

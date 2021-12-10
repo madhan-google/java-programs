@@ -24,7 +24,7 @@ public class AutoProg{
             // System.out.println((KeyEvent));
             String s = sn.nextLine();
             Runtime.getRuntime().exec("notepad.exe");
-   //          StringSelection selection = new StringSelection(s);
+   //          StringSelection selection = new StringSelection(theString);
 			// Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 			// clipboard.setContents(selection, selection);
             sleep(2000);

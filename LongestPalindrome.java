@@ -18,9 +18,15 @@ public class LongestPalindrome{
 				x = co[0];
 				y = co[1];
 			}
+			co = expand(ar, i-1, i, n);
+			if(len<co[1]-co[0]){
+				len = co[1]-co[0];
+				x = co[0];
+				y = co[1];
+			}
 			// max = Math.max(max, len);
 		}
-		System.out.println(y-x-1);
+		// System.out.println(y-x-1);
 		System.out.println(new String(ar).substring(x+1, y));
 	}
 	public static int[] expand(char[] ar, int i, int j, int n){
@@ -31,11 +37,32 @@ public class LongestPalindrome{
 		}
 		return new int[]{x, y};
 	}
+	public static void find(String s){
+		int n = s.length();
+		int len = 0;
+		String res = "";
+		for(int i=0; i<n; i++){
+			for(int j=0; j<=i; j++){
+				String temp = s.substring(j, i);
+				if(temp.length()>len&&new StringBuffer(temp).reverse().toString().equals(temp) ){
+					len = temp.length();
+					res = temp;
+				}
+			}
+		}
+		System.out.println(res);
+	}
 	public static final Scanner sn = new Scanner(System.in);
 	public static final Random rn = new Random();
 	public static final PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
 	public static void main(String[] args) {
-		find(chararr(sn.next()));
+		String s = sn.next();
+		long start = getMS();
+		find(chararr(s));
+		System.out.println("M1 : "+(getMS()-start)+"ms");
+		start = getMS();
+		find(s);
+		System.out.println("M2 : "+(getMS()-start)+"ms");
 	}
 	public static void fill(int[] ar, int n){
 		Arrays.fill(ar, n);

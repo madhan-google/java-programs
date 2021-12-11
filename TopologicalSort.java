@@ -1,0 +1,74 @@
+import java.io.*;
+import java.util.*;
+public class TopologicalSort{
+	public List<List<Integer>> adj;
+	public int n;
+	public boolean[] visit;
+	public Stack<Integer> st;
+	TopologicalSort(int n){
+		this.n = n;
+		visit = new boolean[n];
+		adj = new ArrayList<>();
+		st = new Stack<>();
+		for(int i=0; i<n; i++) adj.add(new ArrayList<>());
+	}
+	public void addEdge(int s, int e){
+		adj.get(s).add(e);
+	}
+	public void showGraph(){
+		for(int i=0; i<n; i++){
+			System.out.print(i+" -> ");
+			for(int x : adj.get(i)){
+				System.out.print(x+" ");
+			}
+			System.out.println();
+		}
+	}
+	public void sort(int start){
+		visit[start] = true;
+		for(int x : adj.get(start)){
+			if(!visit[x]) sort(x);
+		}
+		st.push(start);
+	}
+	public void sort(){
+		sort(0);
+		while(!st.isEmpty()){
+			System.out.print(st.pop()+" -> ");
+		}
+	}
+	public static final Scanner sn = new Scanner(System.in);
+	public static final Random rn = new Random();
+	public static final PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
+	public static void main(String[] args) {
+		TopologicalSort t = new TopologicalSort(Int());
+		while(true){
+			int s = Int();
+			int e = Int();
+			if(s==-1&&e==-1) break;
+			t.addEdge(s, e);
+		}
+		t.showGraph();
+		System.out.println();
+		t.sort();
+	}
+	public static void fill(int[] ar, int n){
+		Arrays.fill(ar, n);
+	}
+	public static void clearScreen(){
+		try{
+			new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+		}catch(Exception e){
+			System.out.println(e);
+		}
+	}
+	public static int Int(){
+		return sn.nextInt();
+	}
+	public static long getMS(){
+		return System.currentTimeMillis();
+	}
+	public static char[] chararr(String s){
+		return s.toCharArray();
+	}
+}

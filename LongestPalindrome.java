@@ -2,12 +2,12 @@ import java.io.*;
 import java.util.*;
 public class LongestPalindrome{
 	public static void find(char[] ar){
-		int n = ar.length, x = 0, y = 0, len = 0, max = -1;
+		int n = ar.length, x = 0, y = 0, len = 0;
 		for(int i=0; i<n; i++){
 			if(i==0) continue;
 			int[] co = expand(ar, i, i+1, n);
 			if(len<co[1]-co[0]){
-				len = co[1]-co[0];
+				len = co[1]-co[0]; 
 				x = co[0];
 				y = co[1];
 			}
@@ -83,4 +83,5 @@ public class LongestPalindrome{
 	public static char[] chararr(String s){
 		return s.toCharArray();
 	}
+	// System.out.println("hello")
 }

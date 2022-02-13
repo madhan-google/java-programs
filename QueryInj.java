@@ -17,7 +17,7 @@ public class QueryInj{
 	public static final Random rn = new Random();
 	public static final PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
 	public static void main(String[] args) throws Exception {
-		File file = new File("d:\\programs\\queries.txt");
+		File file = new File("f:\\programs\\queries.txt");
 		FileReader reader = new FileReader(file);
 		BufferedReader br = new BufferedReader(reader);
 		Robot r = new Robot();

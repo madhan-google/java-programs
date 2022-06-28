@@ -28,11 +28,19 @@ public class AutoProg{
 			// Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 			// clipboard.setContents(selection, selection);
             sleep(2000);
+			// r.keyPress(KeyEvent.VK_SHIFT);
             for(char ch : s.toCharArray()){
-            	r.keyPress((int)ch);
-            	sleep(200);
+				final boolean lower = Character.isLowerCase(ch);
+                final int keyCode = KeyEvent.getExtendedKeyCodeForChar(ch);
+				r.delay(10);
+				if(lower) r.keyPress(KeyEvent.VK_SHIFT);
+            	r.keyPress(keyCode);
+				r.keyRelease(keyCode);
+				if(lower) r.keyRelease(KeyEvent.VK_SHIFT);
+            	sleep(100);
             	// r.keyPress(20);
             }
+			r.keyRelease(KeyEvent.VK_SHIFT);
             // r.keyPress(20);
             // sleep(2000);
             // r.keyPress(20);
